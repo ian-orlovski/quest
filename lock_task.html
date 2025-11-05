@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Задание</title>
+<style>
+    body {
+        font-family: Arial, sans-serif; 
+        display:flex; justify-content:center; align-items:center;
+        height:100vh; 
+        background: linear-gradient(135deg, #f3e7e9, #e3eeff);
+        background-size: cover;
+    }
+    .container { text-align:center; max-width:650px; padding:20px; }
+    .task { font-size:26px; font-weight:700; margin-bottom:35px; }
+    input { padding:14px; font-size:26px; width:150px; text-align:center; border-radius:6px; border:1px solid #888; }
+    button { padding:12px 26px; font-size:22px; margin-top:18px; cursor:pointer; border-radius:6px; border:none; background:#fff; }
+    #message { margin-top:18px; font-size:20px; color:crimson; font-weight:600; min-height:28px; }
+    #lock { display:none; font-size:100px; margin-top:30px; transition: transform 1.2s ease; }
+    .open { transform: rotateY(180deg); }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="task">Математик из одной юмористической миниатюры утверждает, что пин-код его кредитной карточки — это последние четыре цифры… Отгадайте чего, и напишите первые три цифры.</div>
+
+    <input type="text" id="answer" maxlength="3" placeholder="***">
+    <br>
+    <button onclick="check()">Проверить</button>
+
+    <div id="message"></div>
+
+    <div id="lock">🔓</div>
+</div>
+
+<script>
+function check(){
+    const ans = document.getElementById("answer").value.trim();
+    const msg = document.getElementById("message");
+    if(ans === "314"){
+        msg.textContent = "";
+        const lock = document.getElementById("lock");
+        lock.style.display = "block";
+        setTimeout(()=>{ lock.classList.add("open") }, 50);
+    } else {
+        msg.textContent = "Неверно. Попробуйте ещё.";
+    }
+}
+</script>
+</body>
+</html>
