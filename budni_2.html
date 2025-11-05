@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Задача: Привычные будни учителя</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto; background:#f6f6fa; margin:0; padding:24px; color:#111}
+  .wrap{max-width:760px; margin:0 auto}
+  .card{background:#fff; border-radius:12px; padding:20px 22px; box-shadow:0 6px 18px rgba(0,0,0,0.05)}
+  h1{margin:0 0 12px; font-size:22px}
+  ol{padding-left:1.2rem; margin:0 0 18px}
+  li{margin:8px 0}
+  .question{font-weight:800; color:#b30000; font-size:18px; margin:14px 0 16px}
+  .controls{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+  input[type="text"]{padding:10px 12px; border-radius:8px; border:1px solid #ccc; min-width:120px; font-size:16px}
+  button{background:#2b6cb0; color:#fff; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; font-size:15px}
+  .result{margin-top:14px; font-weight:700}
+  .success{color:#0c7c3a}
+  .error{color:#c53030}
+  .envelope{display:inline-block; margin-top:14px; padding:10px 14px; border-radius:8px; background:#fff3cd; color:#665200; border:1px solid #ffecb5}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <h1>Задача: «Привычные будни учителя»</h1>
+
+    <ol>
+      <li>Путь от дома до школы и назад — 1 час</li>
+      <li>Уроки в школе — 7 часов</li>
+      <li>Проверка д/з, к/р, с/р, проверочных, лабораторных — 2 часа</li>
+      <li>Заполнение электронного журнала — 1 час</li>
+      <li>Пьёт коньяк, кофе, воду на планерке — 1 час</li>
+      <li>Небольшая прогулка с Машей за мармеладом — 30 минут</li>
+      <li>Вторая работа — 2 часа</li>
+      <li>Ответы в родительских чатах — 1 час</li>
+      <li>Высылает домашку — 30 минут</li>
+      <li>Подготовка планов уроков — 2 часа</li>
+      <li>Написание сценария — 1 час</li>
+      <li>Монтаж видео — 1 час</li>
+    </ol>
+
+    <div class="question">Вопрос: Сколько часов остаётся на отдых?</div>
+
+    <form id="answerForm" onsubmit="return false">
+      <div class="controls">
+        <input id="answer" type="text" placeholder="Ваш ответ" autocomplete="off">
+        <button id="checkBtn" type="button">Проверить</button>
+      </div>
+    </form>
+
+    <div id="result" class="result"></div>
+    <div id="envelope" style="display:none" class="envelope">Теперь вы можете открыть конверт №2</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const correct = 4;
+  const input = document.getElementById('answer');
+  const res = document.getElementById('result');
+  const envelope = document.getElementById('envelope');
+
+  document.getElementById('checkBtn').addEventListener('click', ()=>{
+    let v = input.value.trim().toLowerCase();
+    if(v.includes('четыр')) v = '4';
+    v = v.replace(/[^\d.]/g,'');
+
+    if(v === '4'){
+      res.textContent = 'Правильно! 🎉';
+      res.className = 'result success';
+      envelope.style.display = 'inline-block';
+    } else {
+      res.textContent = 'Неправильно. Попробуйте ещё.';
+      res.className = 'result error';
+      envelope.style.display = 'none';
+    }
+  });
+})();
+</script>
+</body>
+</html>
