@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Квест для учителя</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #d8f5d0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 30px 15px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #2d4b2b;
+      font-size: 1.4rem;
+      margin-bottom: 25px;
+      line-height: 1.4;
+    }
+
+    .options {
+      text-align: left;
+      max-width: 300px;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      color: #264526;
+    }
+
+    button {
+      background-color: #89c789;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #75b475;
+    }
+
+    #result {
+      margin-top: 25px;
+      font-size: 1.2rem;
+      color: #2d4b2b;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .show {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    .screen {
+      display: none;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .images {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .images img {
+      width: 30%;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+
+    input[type="text"] {
+      margin-top: 15px;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #aaa;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    a.video-link {
+      display: inline-block;
+      background-color: #6bb76b;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      margin-top: 15px;
+      font-size: 1.1rem;
+    }
+
+    a.video-link:hover {
+      background-color: #5da55d;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Экран 1 -->
+  <div class="screen active" id="screen1">
+    <h1>Мы провели небольшой опрос среди ваших учеников:<br>
+      какие ваши качества они ценят больше всего?<br><br>
+      Попробуйте угадать результат!</h1>
+
+    <div class="options">
+      <label><input type="checkbox" class="option" /> Доброта</label>
+      <label><input type="checkbox" class="option" /> Справедливость</label>
+      <label><input type="checkbox" class="option" /> Чувство юмора</label>
+      <label><input type="checkbox" class="option" /> Терпение</label>
+      <label><input type="checkbox" class="option" /> Отзывчивость</label>
+      <label><input type="checkbox" class="option" /> Мудрость</label>
+      <label><input type="checkbox" class="option" /> Внимательность</label>
+    </div>
+
+    <button id="check1">Проверить</button>
+    <div id="result1"></div>
+    <button id="next1" style="display:none;">Дальше →</button>
+  </div>
+
+  <!-- Экран 2 -->
+  <div class="screen" id="screen2">
+    <h1>Что объединяет эти три картинки?</h1>
+    <div class="images">
+      <img src="https://optim.tildacdn.ink/tild3133-6566-4661-a231-333037303761/-/format/webp/buds.jpg.webp" alt="Почки на ветке">
+      <img src="https://optim.tildacdn.ink/tild3162-6566-4232-b836-643931393132/-/format/webp/peephole.jpg.webp" alt="Глазок двери">
+      <img src="https://optim.tildacdn.ink/tild3037-3661-4739-a439-356563363534/-/format/webp/heartcake.jpg.webp" alt="Торт-сердце">
+    </div>
+    <input type="text" id="answer2" placeholder="Введите ответ..." />
+    <button id="check2">Проверить</button>
+    <div id="result2"></div>
+    <button id="next2" style="display:none;">Дальше →</button>
+  </div>
+
+  <!-- Экран 3 -->
+  <div class="screen" id="screen3">
+    <h1>Мы заметили, что вы часто слушаете рок.<br>
+    Перед вами представители отряда жуков, оказавшихся огромное влияние на это направление в музыке.<br>
+    Определите вид.</h1>
+    <div class="images">
+      <img src="https://optim.tildacdn.ink/tild3034-3734-4062-a465-666436323464/-/format/webp/beetles.jpg.webp" alt="Жуки">
+    </div>
+    <input type="text" id="answer3" placeholder="Введите ответ..." />
+    <button id="check3">Проверить</button>
+    <div id="result3"></div>
+    <button id="next3" style="display:none;">Дальше →</button>
+  </div>
+
+  <!-- Экран 4 -->
+  <div class="screen" id="screen4">
+    <h1>Теперь посмотрите следующее видео<br>и вы сможете найти ещё 3 цифры.</h1>
+    <a class="video-link" href="https://youtu.be/OUFAAcGEnQw" target="_blank">▶ Смотреть видео</a>
+    <div style="margin-top:25px;">
+      <input type="text" id="answer4" placeholder="Введите число..." />
+      <button id="check4">Проверить</button>
+      <div id="result4"></div>
+    </div>
+  </div>
+
+  <script>
+    // Переходы между экранами
+    const s1 = document.getElementById('screen1');
+    const s2 = document.getElementById('screen2');
+    const s3 = document.getElementById('screen3');
+    const s4 = document.getElementById('screen4');
+
+    // === Экран 1 ===
+    document.getElementById('check1').onclick = () => {
+      const allChecked = Array.from(document.querySelectorAll('.option')).every(cb => cb.checked);
+      const res = document.getElementById('result1');
+      const next = document.getElementById('next1');
+      if (allChecked) {
+        res.textContent = 'Ну конечно! Только все эти качества вместе делают вас тем человеком, которого так любят ваши ученики!';
+        next.style.display = 'inline-block';
+      } else {
+        res.textContent = 'Попробуйте ещё раз 🙂';
+        next.style.display = 'none';
+      }
+      res.classList.add('show');
+    };
+    document.getElementById('next1').onclick = () => {
+      s1.classList.remove('active');
+      s2.classList.add('active');
+    };
+
+    // === Экран 2 ===
+    document.getElementById('check2').onclick = () => {
+      const ans = document.getElementById('answer2').value.trim().toLowerCase();
+      const res = document.getElementById('result2');
+      const next = document.getElementById('next2');
+      //if (ans === 'орган') {
+	  if (['орган', 'органы', 'Орган', 'Органы'].includes(ans)) {
+        res.textContent = 'Класс!!';
+        next.style.display = 'inline-block';
+      } else {
+        res.textContent = 'Попробуйте ещё раз 🙂';
+        next.style.display = 'none';
+      }
+      res.classList.add('show');
+    };
+    document.getElementById('next2').onclick = () => {
+      s2.classList.remove('active');
+      s3.classList.add('active');
+    };
+
+    // === Экран 3 ===
+    document.getElementById('check3').onclick = () => {
+      const ans = document.getElementById('answer3').value.trim().toLowerCase();
+      const res = document.getElementById('result3');
+      const next = document.getElementById('next3');
+      if (['битлз', 'the beatles', 'beatles'].includes(ans)) {
+        res.textContent = 'ВАУ!!! Вы справились с первой задачей. Вы верно ответили на 3 вопроса. Теперь у Вас есть 3 буквы: Q, Q и S. Осталось последнее задание в вашей квартире: Посмотрите следующее видео и вы сможете найти ещё 3 цифры.';
+        next.style.display = 'inline-block';
+      } else {
+        res.textContent = 'Попробуйте ещё раз 🙂';
+        next.style.display = 'none';
+      }
+      res.classList.add('show');
+    };
+    document.getElementById('next3').onclick = () => {
+      s3.classList.remove('active');
+      s4.classList.add('active');
+    };
+
+    // === Экран 4 ===
+    document.getElementById('check4').onclick = () => {
+      const ans = document.getElementById('answer4').value.trim();
+      const res = document.getElementById('result4');
+      if (ans === '147') {
+        res.textContent = 'Первая часть квеста успешно пройдена. Пожалуйста, улыбнитесь. И догадайтесь, что означают буквы и цифры, которые вы нашли. (Если что, Маша знает ответ и за обнимашки готова вам помочь). А мы ждём вас в школе.';
+      } else {
+        res.textContent = 'Попробуйте ещё раз 🙂';
+      }
+      res.classList.add('show');
+    };
+  </script>
+</body>
+</html>
